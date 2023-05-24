@@ -29,7 +29,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="?do=design_concept">
                             品牌理念
                         </a>
                     </li>
@@ -92,8 +92,13 @@
     4.改密碼葉面。
     -->
     </div>
+    <style>
+        .a{
+            margin-bottom: 25px;
+        }
+    </style>
     <footer class="container-xl">
-        <div class="position-absolute col-4 end-0">
+        <div class="position-absolute col-4 end-0" style="margin-top: 25px;">
             <a href="#" style="text-decoration:none;color:black;">© 澈方 2023</a>
             <a href="#"><img style="width: 24px;height: 24px;" src="./img/facebook.png" alt=""></a>
             <a href="#"><img style="width: 24px;height: 24px;" src="./img/instagram.png" alt=""></a>
