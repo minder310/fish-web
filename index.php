@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="?do=Product_desciption">
                             魚缸系列
                         </a>
                     </li>
@@ -53,7 +53,7 @@
         </div>
     </nav>
     <!-- container--xl指地的是在視窗達到1200xp前，都會是100%佔滿這個視窗。 -->
-    <div class="container-xl">
+    <div class="container-xl" style="margin-top: 75px;">
         <?php
         // 如果$_GET['do']存在，$do=$_GET['do']，如果不存在$do=home;
         $do = $_GET['do'] ?? 'home';
@@ -99,7 +99,7 @@
     </style>
     <footer class="container-xl">
         <div class="position-absolute col-4 end-0" style="margin-top: 25px;">
-            <a href="#" style="text-decoration:none;color:black;">© 澈方 2023</a>
+            <a href="?do=login" style="text-decoration:none;color:black;">© 澈方 2023</a>
             <a href="#"><img style="width: 24px;height: 24px;" src="./img/facebook.png" alt=""></a>
             <a href="#"><img style="width: 24px;height: 24px;" src="./img/instagram.png" alt=""></a>
             <a href="#"><img style="width: 24px;height: 24px;" src="./img/line.png" alt=""></a>
