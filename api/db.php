@@ -62,6 +62,7 @@ class db
         }
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
+    // 刪除資料，寫法是如果有id就以id作為刪除依據，如果是陣列，就把陣列當作刪除依據。
     public function del($id){
         $sql="DELETE FROM `$this->table` WHERE ";
         if(is_array($id)){
@@ -72,10 +73,26 @@ class db
         }
         return $this->pdo->exec($sql);
     }
-    public function insert()
+    public function add($array){
+        // 如果裡面有id，是舊的更改資料。
+        if(isset($array['id'])){
+            // 先將id獨立出來，並且存進$iD中。
+            $id=$array['id'];
+            // 刪除陣列中id的值。
+            unset($array['id']);
+            $tmp=$this->arrayToSqlarray($array);
+            $sql="UPDATE $this->table SET ".join(" , ",$tmp)." where `id` = '$id'";
+        // 如果裡面沒有id。是全新的資料檔。
+        }else{
+            $array_key=array_keys($array);
+            $sql="INSERT INTO `$this->table` (`".join("`,`",$array_key)."`) VALUES ('".join("','",$array)."')";
+        }
+        
+    }
 
 }
 // 宣告要連結的資料庫表單名稱。
 $user=new db("username");
-dd($user->all(["user"=>"test","password"=>"test"]));
+// 測試輸入帳號密碼成功。
+// dd($user->add(["user"=>"pierre","password"=>"12345678"]));
 ?>
