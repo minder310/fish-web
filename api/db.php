@@ -12,7 +12,7 @@ function dd($array){
 };
 // 這個物件可以把用戶導向，特定網頁。
 function to($url){
-    header("location",$url);
+    header("location:"."$url");
 }
 // 宣告一個class叫做db可以拿來存取資料庫。
 class db
@@ -73,6 +73,7 @@ class db
         }
         return $this->pdo->exec($sql);
     }
+    // 新增資料，如果裡面有id值就是更新資料，如果沒有就是新增資料。
     public function add($array){
         // 如果裡面有id，是舊的更改資料。
         if(isset($array['id'])){
@@ -87,12 +88,11 @@ class db
             $array_key=array_keys($array);
             $sql="INSERT INTO `$this->table` (`".join("`,`",$array_key)."`) VALUES ('".join("','",$array)."')";
         }
-        
+        return $this->pdo->exec($sql);
     }
-
 }
 // 宣告要連結的資料庫表單名稱。
 $user=new db("username");
-// 測試輸入帳號密碼成功。
-// dd($user->add(["user"=>"pierre","password"=>"12345678"]));
+// 測試新增帳號密碼帳號密碼成功
+// dd($user->all(["user"=>"pierre"]));
 ?>

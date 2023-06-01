@@ -51,6 +51,22 @@ include "./api/db.php";
                             聯絡資訊
                         </a>
                     </li>
+                    <?php
+                    if (!empty($_SESSION['name'])) {
+                    ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                後臺管理
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./api/logout.php">
+                                登出
+                            </a>
+                        </li>
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -95,11 +111,6 @@ include "./api/db.php";
     4.改密碼葉面。
     -->
     </div>
-    <style>
-        .a{
-            margin-bottom: 25px;
-        }
-    </style>
     <footer class="container-xl">
         <div class="position-absolute col-4 end-0" style="margin-top: 25px;">
             <a href="?do=login" style="text-decoration:none;color:black;">© 澈方 2023</a>
