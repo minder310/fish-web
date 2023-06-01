@@ -7,3 +7,14 @@
 
     <input type="submit" value="登入">
 </form>
+    <?php
+    if(!empty($_SESSION["logsum"])){
+        ?>
+        <h3 style="color:red;">無此帳號<?=$_SESSION["logsum"]?>次</h3>
+        <?php
+    }else if(!empty($_SESSION["PasswordIsMistake"])){
+        ?>
+        <h3 style="color:red;">密碼錯誤<?=$_SESSION["PasswordIsMistake"]?>次</h3>
+        <?php
+    }
+    ?>
