@@ -54,10 +54,20 @@ include "./api/db.php";
                     <?php
                     if (!empty($_SESSION['name'])) {
                     ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                 後臺管理
                             </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="?back=product">新增產品</a></li>
+                                <li><a class="dropdown-item" href="#">新增分類</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li>
+                                    <!-- 這是拿來做下拉分隔線用的。 -->
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./api/logout.php">
@@ -74,14 +84,40 @@ include "./api/db.php";
     <!-- container--xl指地的是在視窗達到1200xp前，都會是100%佔滿這個視窗。 -->
     <div class="container-xl" style="margin-top: 75px;">
         <?php
-        // 如果$_GET['do']存在，$do=$_GET['do']，如果不存在$do=home;
-        $do = $_GET['do'] ?? 'home';
-        // 將$do存入$file內，並且轉成資料夾位置。
-        $file = "./" . $do . ".php";
-        if (file_exists($file)) {
-            include $file;
+        // 這段是判斷，如果有登入狀態下。
+        if (!empty($_SESSION['name'])) {
+            if (!isset($_GET['back'])) {
+                // 先判斷有沒有get[back]
+                if (!empty($_GET["back"])) {
+                    $back = $_GET['back'];
+                    $file = "./back/" . $back . ".php";
+                    if (file_exists($file)) {
+                        include $file;
+                    }else{
+                        include "./home.php";
+                    }
+                } else {
+                    $do = $_GET['do'] ?? 'home';
+                    // 將$do存入$file內，並且轉成資料夾位置。
+                    $file = "./" . $do . ".php";
+                    if (file_exists($file)) {
+                        include $file;
+                    } else {
+                        include "./home.php";
+                    }
+                }
+            }
         } else {
-            include "./home.php";
+            // 這一段是未登入狀態下會走的路線。
+            // 如果$_GET['do']存在，$do=$_GET['do']，如果不存在$do=home;
+            $do = $_GET['do'] ?? 'home';
+            // 將$do存入$file內，並且轉成資料夾位置。
+            $file = "./" . $do . ".php";
+            if (file_exists($file)) {
+                include $file;
+            } else {
+                include "./home.php";
+            }
         }
         ?>
     </div>

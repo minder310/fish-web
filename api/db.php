@@ -93,6 +93,7 @@ class db
 }
 // 宣告要連結的資料庫表單名稱。
 $user=new db("username");
+$fish=new db("fish_tank");
 // 測試新增帳號密碼帳號密碼成功
 // dd($user->all(["user"=>"pierre"]));
 ?>
